@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plushie Planet — Contact</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .contact-card img {
+      cursor: zoom-in;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+      transform-origin: center center;
+      display: block;
+    }
+
+    .contact-card:hover img {
+      transform: scale(1.04);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+      filter: brightness(1.06);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.78);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.28s ease, visibility 0.28s ease;
+      z-index: 9999;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .lightbox img {
+      max-width: min(90vw, 900px);
+      max-height: 85vh;
+      width: auto;
+      height: auto;
+      border-radius: 18px;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.4);
+      transform: scale(0.92);
+      transition: transform 0.28s ease;
+      cursor: zoom-out;
+      background: #fff;
+    }
+
+    .lightbox.open img {
+      transform: scale(1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      border: 0;
+      border-radius: 999px;
+      padding: 0.65rem 0.9rem;
+      font-size: 1.4rem;
+      line-height: 1;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="logo-wrap" href="index.html"><img src="assets/logo.png" alt="Plushie Planet logo" /></a>
+      <div class="brand-title">Plushie Planet</div>
+      <div class="header-icons"><img src="assets/magnifying_glass_icon.svg" alt="Search" /><img src="assets/shopping_cart_icon.svg" alt="Cart" /></div>
+    </header>
+    <nav class="navbar" aria-label="Primary">
+      <a class="nav-link" href="index.html">Home</a><span class="divider">|</span>
+      <a class="nav-link" href="about.html">About Us</a><span class="divider">|</span>
+      <a class="nav-link" href="products.html">Products</a><span class="divider">|</span>
+      <a class="nav-link" href="news.html">News</a><span class="divider">|</span>
+      <a class="nav-link active" href="contact.html">Contact</a>
+    </nav>
+
+    <main class="contact-grid">
+      <article class="contact-card"><img src="assets/contacts_1.png" alt="Bartholomew Snuggleton portrait" /><h3>Chief Cuddle Officer (CEO)</h3><p>Bartholomew Snuggleton</p></article>
+      <article class="contact-card"><img src="assets/contacts_2.png" alt="Penelope Plushworth portrait" /><h3>Chief Financial Officer (CFO)</h3><p>Penelope Plushworth</p></article>
+      <article class="contact-card"><img src="assets/contacts_3.png" alt="Theodore Cottonwell portrait" /><h3>Marketing Officer</h3><p>Theodore Cottonwell</p></article>
+      <article class="contact-card"><img src="assets/contacts_4.png" alt="Luna Lovebutton portrait" /><h3>Chief Hype &amp; Hug Officer</h3><p>Luna Lovebutton</p></article>
+      <article class="contact-card"><img src="assets/contacts_5.png" alt="Oliver Softbyte portrait" /><h3>Sales Director</h3><p>Oliver Softbyte</p></article>
+      <article class="contact-card"><img src="assets/contacts_6.png" alt="Daisy Warmheart portrait" /><h3>Chief Happiness &amp; Hearts Officer</h3><p>Daisy Warmheart</p></article>
+    </main>
+
+    <footer class="footer">
+      <a href="#">Privacy</a>
+      <a href="cookie-policy.html">Cookie Policy</a>
+      <a href="#">Site Map</a>
+      <a href="accessibility.html">Accessibility</a>
+    </footer>
+  </div>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer">×</button>
+    <img id="lightboxImage" src="" alt="" />
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const galleryImages = document.querySelectorAll('.contact-card img');
+
+    function openLightbox(img) {
+      lightboxImage.src = img.src;
+      lightboxImage.alt = img.alt;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      lightboxImage.src = '';
+      lightboxImage.alt = '';
+    }
+
+    galleryImages.forEach((img) => {
+      img.addEventListener('click', () => openLightbox(img));
+      img.setAttribute('tabindex', '0');
+      img.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openLightbox(img);
+        }
+      });
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && lightbox.classList.contains('open')) {
+        closeLightbox();
+      }
+    });
+  </script>
+</body>
+</html>

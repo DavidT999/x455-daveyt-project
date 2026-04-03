@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plushie Planet — Accessibility</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="logo-wrap" href="index.html"><img src="assets/logo.png" alt="Plushie Planet logo" /></a>
+      <div class="brand-title">Plushie Planet</div>
+      <div class="header-icons"><img src="assets/magnifying_glass_icon.svg" alt="Search" /><img src="assets/shopping_cart_icon.svg" alt="Cart" /></div>
+    </header>
+    <nav class="navbar" aria-label="Primary">
+      <a class="nav-link" href="index.html">Home</a><span class="divider">|</span>
+      <a class="nav-link" href="about.html">About Us</a><span class="divider">|</span>
+      <a class="nav-link" href="products.html">Products</a><span class="divider">|</span>
+      <a class="nav-link" href="news.html">News</a><span class="divider">|</span>
+      <a class="nav-link" href="contact.html">Contact</a>
+    </nav>
+
+    <main>
+      <section class="video-grid" aria-label="Accessibility videos">
+        <div class="video-card"><img src="videos/accessibility_keyboard.gif" alt="Animated guide showing keyboard navigation across site tabs" /></div>
+        <div class="video-card"><img src="videos/accessibility_zoom.gif" alt="Animated guide showing readable text and zoom support" /></div>
+        <div class="video-card"><img src="videos/accessibility_alttext.gif" alt="Animated guide showing image labels for screen readers" /></div>
+      </section>
+
+      <section class="accordions">
+        <article class="accordion-item">
+          <div class="accordion-head">Accessibility at Plushie Planet <span class="accordion-symbol">⌃</span></div>
+          <div class="accordion-body">
+            Plushie Planet is designed to feel gentle and easy to use. We aim for clear headings, keyboard-friendly navigation, visible focus states, descriptive alt text, and readable layouts that stay usable as visitors zoom in. Product pages include meaningful labels on images and controls so shoppers can browse with assistive technologies and understand what each plush, button, and navigation link is meant to do.
+          </div>
+        </article>
+        <article class="accordion-item collapsed">
+          <div class="accordion-head">Need help or want to report an issue? <span class="accordion-symbol">⌄</span></div>
+          <div class="accordion-body">
+            We are always trying to make the site softer on the eyes and simpler to explore. If you run into a barrier, contact our team and let us know the page, device, and feature involved. We welcome feedback about captions, contrast, keyboard access, motion preferences, and screen-reader clarity, and we will use that feedback to keep improving the experience.
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="#">Privacy</a>
+      <a href="cookie-policy.html">Cookie Policy</a>
+      <a href="#">Site Map</a>
+      <a class="active-footer" href="accessibility.html">Accessibility</a>
+    </footer>
+  </div>
+</body>
+</html>
